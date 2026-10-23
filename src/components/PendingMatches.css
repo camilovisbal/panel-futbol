@@ -24,7 +24,6 @@
 .pending__note,
 .pending__done {
     margin-top: 10px;
-    color: var(--muted);
 }
 
 .pending__list {

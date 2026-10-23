@@ -25,7 +25,10 @@
 
 .section__note {
   max-width: 46ch;
-  color: var(--muted);
+}
+
+p {
+  max-width: 68ch;
 }
 
 .register {
@@ -74,8 +77,25 @@
   background: #3b3b3b;
 }
 
-.reveal {
-  animation: reveal 700ms var(--ease-out) both;
+/* Cada bloque aparece subiendo un poco cuando entra en pantalla al hacer scroll. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .section__head,
+    .summary__row,
+    .summary__photo,
+    .standings__row,
+    .semifinal__tie,
+    .semifinal__panel,
+    .match-form,
+    .pending__item,
+    .history__round,
+    .team-card,
+    .footer__links li {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
 }
 
 @keyframes reveal {

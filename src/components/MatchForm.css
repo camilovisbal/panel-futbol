@@ -75,7 +75,7 @@
 .match-form__error--general {
     margin-top: 16px;
     padding: 12px 14px;
-    background: rgb(224 138 122 / 0.12);
+    background: rgb(240 106 106 / 0.12);
 }
 
 .match-form__foot {
@@ -89,7 +89,6 @@
 
 .match-form__fixture {
     max-width: 44ch;
-    color: var(--muted);
 }
 
 @media (max-width: 640px) {

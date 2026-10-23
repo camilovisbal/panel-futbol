@@ -7,7 +7,6 @@
 
 .team-list__note {
     max-width: 40ch;
-    color: var(--field-muted);
 }
 
 .team-list__grid {
