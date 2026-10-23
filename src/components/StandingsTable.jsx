@@ -4,9 +4,15 @@ import "./StandingsTable.css";
 const FORM_LABELS = { G: "Ganó", E: "Empató", P: "Perdió" };
 const STATUS_LABELS = { clasificado: "Clasificado", eliminado: "Eliminado" };
 
-function StandingsTable({ standings, teamsById, formById, statusById, semifinalSpots, onSelectTeam }) {
+function StandingsTable({ standings, teamsById, formById, statusById, semifinalSpots, hasMatches, onSelectTeam }) {
     return (
         <div className="standings">
+            {!hasMatches && (
+                <p className="standings__empty" role="status">
+                    Todavía no hay partidos registrados. Todos los equipos están en cero y se ordenan por nombre.
+                </p>
+            )}
+
             <div className="standings__scroll">
                 <table className="standings__table">
                     <caption className="visually-hidden">

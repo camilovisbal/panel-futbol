@@ -2,7 +2,13 @@ import { useState } from "react";
 import { teams } from "./data/teams.js";
 import { fixtures, TOTAL_ROUNDS } from "./data/fixtures.js";
 import { initialMatches } from "./data/matches.js";
-import { getCurrentRound, getNextMatchId, getPendingFixtures } from "./utils/matches.js";
+import {
+  ALL_TEAMS,
+  filterMatchesByTeam,
+  getCurrentRound,
+  getNextMatchId,
+  getPendingFixtures,
+} from "./utils/matches.js";
 import {
   calculateStandings,
   getQualificationStatus,
@@ -13,11 +19,13 @@ import Header from "./components/Header.jsx";
 import StandingsTable from "./components/StandingsTable.jsx";
 import MatchForm from "./components/MatchForm.jsx";
 import MatchResult from "./components/MatchResult.jsx";
+import MatchHistory from "./components/MatchHistory.jsx";
 import TeamList from "./components/TeamList.jsx";
 import TeamModal from "./components/TeamModal.jsx";
 import "./App.css";
 
 const teamsById = Object.fromEntries(teams.map((team) => [team.id, team]));
+const fixturesById = Object.fromEntries(fixtures.map((fixture) => [fixture.id, fixture]));
 const MATCHES_PER_TEAM = (teams.length - 1) * 2;
 const EMPTY_FORM = { homeId: "", awayId: "", homeGoals: "", awayGoals: "" };
 
@@ -27,6 +35,7 @@ function App() {
   const [matchForm, setMatchForm] = useState(EMPTY_FORM);
   const [selectedTeamId, setSelectedTeamId] = useState(null);
   const [lastMatchId, setLastMatchId] = useState(null);
+  const [teamFilter, setTeamFilter] = useState(ALL_TEAMS);
 
   const pendingFixtures = getPendingFixtures(fixtures, matches);
   const currentRound = getCurrentRound(pendingFixtures, TOTAL_ROUNDS);
@@ -42,7 +51,9 @@ function App() {
   const selectedPosition = standings.findIndex((row) => row.teamId === selectedTeamId) + 1;
 
   const lastMatch = matches.find((match) => match.id === lastMatchId);
-  const lastFixture = lastMatch && fixtures.find((fixture) => fixture.id === lastMatch.fixtureId);
+  const lastFixture = lastMatch && fixturesById[lastMatch.fixtureId];
+
+  const visibleMatches = filterMatchesByTeam(matches, teamFilter);
 
   const handleFormChange = (field, value) => {
     setMatchForm((currentForm) => ({ ...currentForm, [field]: value }));
@@ -61,6 +72,20 @@ function App() {
     setMatches((currentMatches) => [...currentMatches, newMatch]);
     setLastMatchId(newMatch.id);
     setMatchForm(EMPTY_FORM);
+  };
+
+  const handleDeleteMatch = (matchId) => {
+    setMatches((currentMatches) => currentMatches.filter((match) => match.id !== matchId));
+  };
+
+  const handleClearMatches = () => {
+    setMatches([]);
+    setTeamFilter(ALL_TEAMS);
+  };
+
+  const handleRestoreMatches = () => {
+    setMatches(initialMatches);
+    setLastMatchId(null);
   };
 
   return (
@@ -84,6 +109,7 @@ function App() {
             formById={formById}
             statusById={statusById}
             semifinalSpots={SEMIFINAL_SPOTS}
+            hasMatches={matches.length > 0}
             onSelectTeam={setSelectedTeamId}
           />
         </section>
@@ -115,6 +141,19 @@ function App() {
             />
           )}
         </section>
+
+        <MatchHistory
+          teams={teams}
+          teamsById={teamsById}
+          fixturesById={fixturesById}
+          allMatchesCount={matches.length}
+          matches={visibleMatches}
+          teamFilter={teamFilter}
+          onFilterChange={setTeamFilter}
+          onDelete={handleDeleteMatch}
+          onClearAll={handleClearMatches}
+          onRestore={handleRestoreMatches}
+        />
 
         <TeamList teams={teams} standings={standings} onSelectTeam={setSelectedTeamId} />
       </main>

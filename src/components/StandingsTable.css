@@ -1,3 +1,10 @@
+.standings__empty {
+    margin-bottom: 24px;
+    padding: 16px 20px;
+    background: var(--surface);
+    font-weight: 600;
+}
+
 .standings__scroll {
     overflow-x: auto;
     margin: 0 calc(var(--margin) * -1);
