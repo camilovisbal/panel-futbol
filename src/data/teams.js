@@ -1,4 +1,5 @@
 // Plantillas de la temporada 2026/27 (fuente: Wikipedia, octubre de 2026).
+// Las fotos de los estadios son de Wikimedia Commons; cada una lleva su autor y licencia.
 // Posiciones: POR portero, DEF defensa, MED mediocampista, DEL delantero.
 export const teams = [
     {
@@ -11,6 +12,12 @@ export const teams = [
         founded: 1902,
         coach: "José Mourinho",
         crest: "/escudos/real-madrid.svg",
+        stadiumPhoto: {
+            src: "/estadios/real-madrid.jpg",
+            author: "Badefa",
+            license: "CC0",
+            source: "https://commons.wikimedia.org/wiki/File:Estadio_Santiago_Bernab%C3%A9u_%E2%80%94_Real_Madrid_Juvenil_A_-_Santiago_Wanderers_Sub-20_(Intercontinental_Sub-20_2026)_%E2%80%94_R%C3%A9cord_de_asistencia_en_un_partido_de_juveniles.jpg",
+        },
         players: [
             { number: 1, name: "Thibaut Courtois", position: "POR" },
             { number: 13, name: "Andriy Lunin", position: "POR" },
@@ -45,6 +52,12 @@ export const teams = [
         founded: 1899,
         coach: "Hansi Flick",
         crest: "/escudos/barcelona.svg",
+        stadiumPhoto: {
+            src: "/estadios/barcelona.jpg",
+            author: "Oh-Barcelona.com",
+            license: "CC BY 2.0",
+            source: "https://commons.wikimedia.org/wiki/File:Camp_Nou_aerial.jpg",
+        },
         players: [
             { number: 1, name: "Joan Garcia", position: "POR" },
             { number: 13, name: "Wojciech Szczęsny", position: "POR" },
@@ -79,6 +92,12 @@ export const teams = [
         founded: 1903,
         coach: "Diego Simeone",
         crest: "/escudos/atletico.svg",
+        stadiumPhoto: {
+            src: "/estadios/atletico.jpg",
+            author: "Elwin594",
+            license: "CC0",
+            source: "https://commons.wikimedia.org/wiki/File:Atleti_vs_Villarreal_-_September_2025.jpg",
+        },
         players: [
             { number: 13, name: "Jan Oblak", position: "POR" },
             { number: 1, name: "Juan Musso", position: "POR" },
@@ -111,6 +130,12 @@ export const teams = [
         founded: 1900,
         coach: "Vincent Kompany",
         crest: "/escudos/bayern.svg",
+        stadiumPhoto: {
+            src: "/estadios/bayern.jpg",
+            author: "Michael 2015",
+            license: "CC BY-SA 4.0",
+            source: "https://commons.wikimedia.org/wiki/File:Allianz_Arena_2008-02-09.jpg",
+        },
         players: [
             { number: 1, name: "Manuel Neuer", position: "POR" },
             { number: 40, name: "Jonas Urbig", position: "POR" },
@@ -143,6 +168,12 @@ export const teams = [
         founded: 1909,
         coach: "Niko Kovač",
         crest: "/escudos/dortmund.svg",
+        stadiumPhoto: {
+            src: "/estadios/dortmund.jpg",
+            author: "Arne Müseler",
+            license: "CC BY-SA 3.0 DE",
+            source: "https://commons.wikimedia.org/wiki/File:Signal_iduna_park_stadium_dortmund_4.jpg",
+        },
         players: [
             { number: 1, name: "Gregor Kobel", position: "POR" },
             { number: 33, name: "Alexander Meyer", position: "POR" },
@@ -174,6 +205,12 @@ export const teams = [
         founded: 1880,
         coach: "Enzo Maresca",
         crest: "/escudos/man-city.svg",
+        stadiumPhoto: {
+            src: "/estadios/man-city.jpg",
+            author: "Arne Müseler",
+            license: "CC BY-SA 3.0 DE",
+            source: "https://commons.wikimedia.org/wiki/File:City_of_Manchester_Stadium_2023_cropped.jpg",
+        },
         players: [
             { number: 1, name: "Gianluigi Donnarumma", position: "POR" },
             { number: 28, name: "Gerónimo Rulli", position: "POR" },
@@ -206,6 +243,12 @@ export const teams = [
         founded: 1892,
         coach: "Andoni Iraola",
         crest: "/escudos/liverpool.png",
+        stadiumPhoto: {
+            src: "/estadios/liverpool.jpg",
+            author: "Arne Müseler",
+            license: "CC BY-SA 3.0 DE",
+            source: "https://commons.wikimedia.org/wiki/File:Liverpool_anfield_road_stadium.jpg",
+        },
         players: [
             { number: 1, name: "Alisson Becker", position: "POR" },
             { number: 25, name: "Giorgi Mamardashvili", position: "POR" },
@@ -238,6 +281,12 @@ export const teams = [
         founded: 1886,
         coach: "Mikel Arteta",
         crest: "/escudos/arsenal.svg",
+        stadiumPhoto: {
+            src: "/estadios/arsenal.jpg",
+            author: "Arne Müseler",
+            license: "CC BY-SA 3.0 DE",
+            source: "https://commons.wikimedia.org/wiki/File:London_Emirates_Stadium_arsenal.jpg",
+        },
         players: [
             { number: 1, name: "David Raya", position: "POR" },
             { number: 13, name: "Kepa Arrizabalaga", position: "POR" },
@@ -271,6 +320,12 @@ export const teams = [
         founded: 1970,
         coach: "Luis Enrique",
         crest: "/escudos/psg.svg",
+        stadiumPhoto: {
+            src: "/estadios/psg.jpg",
+            author: "Zakarie Faibis",
+            license: "CC BY-SA 4.0",
+            source: "https://commons.wikimedia.org/wiki/File:PSG-Celtic_Glasgow_Parc_des_Princes_09.jpg",
+        },
         players: [
             { number: 30, name: "Lucas Chevalier", position: "POR" },
             { number: 39, name: "Matvey Safonov", position: "POR" },
@@ -303,6 +358,12 @@ export const teams = [
         founded: 1908,
         coach: "Cristian Chivu",
         crest: "/escudos/inter.svg",
+        stadiumPhoto: {
+            src: "/estadios/inter.jpg",
+            author: "Prelvini",
+            license: "CC BY-SA 4.0",
+            source: "https://commons.wikimedia.org/wiki/File:Stadio_Meazza_2021_3.jpg",
+        },
         players: [
             { number: 1, name: "Josep Martínez", position: "POR" },
             { number: 49, name: "Ivan Provedel", position: "POR" },
