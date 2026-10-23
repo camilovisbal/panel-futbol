@@ -1,0 +1,26 @@
+.crest {
+    display: inline-grid;
+    flex-shrink: 0;
+    place-items: center;
+}
+
+.crest img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.crest--small {
+    width: 28px;
+    height: 28px;
+}
+
+.crest--medium {
+    width: 44px;
+    height: 44px;
+}
+
+.crest--large {
+    width: clamp(64px, 7vw, 96px);
+    height: clamp(64px, 7vw, 96px);
+}
