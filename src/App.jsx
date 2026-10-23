@@ -16,7 +16,9 @@ import {
   getSemifinalPairs,
   SEMIFINAL_SPOTS,
 } from "./utils/standings.js";
+import { getTournamentSummary } from "./utils/summary.js";
 import Header from "./components/Header.jsx";
+import TournamentSummary from "./components/TournamentSummary.jsx";
 import StandingsTable from "./components/StandingsTable.jsx";
 import SemifinalBracket from "./components/SemifinalBracket.jsx";
 import MatchForm from "./components/MatchForm.jsx";
@@ -25,6 +27,7 @@ import PendingMatches from "./components/PendingMatches.jsx";
 import MatchHistory from "./components/MatchHistory.jsx";
 import TeamList from "./components/TeamList.jsx";
 import TeamModal from "./components/TeamModal.jsx";
+import Footer from "./components/Footer.jsx";
 import "./App.css";
 
 const teamsById = Object.fromEntries(teams.map((team) => [team.id, team]));
@@ -47,6 +50,8 @@ function App() {
   const standings = calculateStandings(teams, matches);
   const statusById = getQualificationStatus(standings, MATCHES_PER_TEAM);
   const semifinalPairs = getSemifinalPairs(standings);
+  const summary = getTournamentSummary(matches);
+  const biggestWin = summary.biggestWin;
   const formById = Object.fromEntries(
     teams.map((team) => [team.id, getRecentForm(team.id, matches, fixtures)])
   );
@@ -102,6 +107,18 @@ function App() {
       <Header currentRound={currentRound} totalRounds={TOTAL_ROUNDS} />
 
       <main>
+        <TournamentSummary
+          playedCount={matches.length}
+          totalCount={fixtures.length}
+          summary={summary}
+          leader={standings[0]}
+          leaderTeam={teamsById[standings[0].teamId]}
+          biggestWinTeams={
+            biggestWin && { home: teamsById[biggestWin.homeId], away: teamsById[biggestWin.awayId] }
+          }
+          biggestWinRound={biggestWin && fixturesById[biggestWin.fixtureId].round}
+        />
+
         <section className="section" id="tabla" aria-labelledby="tabla-titulo">
           <div className="section__head">
             <h2 className="section__title" id="tabla-titulo">Tabla de posiciones</h2>
@@ -184,6 +201,8 @@ function App() {
 
         <TeamList teams={teams} standings={standings} onSelectTeam={setSelectedTeamId} />
       </main>
+
+      <Footer />
 
       {selectedTeam && (
         <TeamModal
