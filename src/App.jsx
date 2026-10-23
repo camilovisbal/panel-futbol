@@ -2,7 +2,7 @@ import { useState } from "react";
 import { teams } from "./data/teams.js";
 import { fixtures, TOTAL_ROUNDS } from "./data/fixtures.js";
 import { initialMatches } from "./data/matches.js";
-import { getCurrentRound, getPendingFixtures } from "./utils/matches.js";
+import { getCurrentRound, getNextMatchId, getPendingFixtures } from "./utils/matches.js";
 import {
   calculateStandings,
   getQualificationStatus,
@@ -11,16 +11,19 @@ import {
 } from "./utils/standings.js";
 import Header from "./components/Header.jsx";
 import StandingsTable from "./components/StandingsTable.jsx";
+import MatchForm from "./components/MatchForm.jsx";
 import TeamList from "./components/TeamList.jsx";
 import TeamModal from "./components/TeamModal.jsx";
 import "./App.css";
 
 const teamsById = Object.fromEntries(teams.map((team) => [team.id, team]));
 const MATCHES_PER_TEAM = (teams.length - 1) * 2;
+const EMPTY_FORM = { homeId: "", awayId: "", homeGoals: "", awayGoals: "" };
 
 function App() {
 
-  const [matches] = useState(initialMatches);
+  const [matches, setMatches] = useState(initialMatches);
+  const [matchForm, setMatchForm] = useState(EMPTY_FORM);
   const [selectedTeamId, setSelectedTeamId] = useState(null);
 
   const pendingFixtures = getPendingFixtures(fixtures, matches);
@@ -35,6 +38,24 @@ function App() {
 
   const selectedTeam = teamsById[selectedTeamId];
   const selectedPosition = standings.findIndex((row) => row.teamId === selectedTeamId) + 1;
+
+  const handleFormChange = (field, value) => {
+    setMatchForm((currentForm) => ({ ...currentForm, [field]: value }));
+  };
+
+  const handleRegisterMatch = (fixture, homeGoals, awayGoals) => {
+    const newMatch = {
+      id: getNextMatchId(matches),
+      fixtureId: fixture.id,
+      homeId: fixture.homeId,
+      awayId: fixture.awayId,
+      homeGoals,
+      awayGoals,
+    };
+
+    setMatches((currentMatches) => [...currentMatches, newMatch]);
+    setMatchForm(EMPTY_FORM);
+  };
 
   return (
     <div className="app">
@@ -58,6 +79,24 @@ function App() {
             statusById={statusById}
             semifinalSpots={SEMIFINAL_SPOTS}
             onSelectTeam={setSelectedTeamId}
+          />
+        </section>
+
+        <section className="section" id="registrar" aria-labelledby="registrar-titulo">
+          <div className="section__head">
+            <h2 className="section__title" id="registrar-titulo">Registrar partido</h2>
+            <p className="section__note">
+              Elige local y visitante, escribe el marcador y la tabla se actualiza al instante.
+            </p>
+          </div>
+
+          <MatchForm
+            teams={teams}
+            fixtures={fixtures}
+            matches={matches}
+            values={matchForm}
+            onChange={handleFormChange}
+            onRegister={handleRegisterMatch}
           />
         </section>
 
