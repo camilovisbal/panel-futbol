@@ -28,6 +28,19 @@
   color: var(--muted);
 }
 
+.register {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  align-items: start;
+  gap: clamp(32px, 4vw, 64px);
+}
+
+@media (max-width: 1000px) {
+  .register {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 .button {
   display: inline-flex;
   align-items: center;

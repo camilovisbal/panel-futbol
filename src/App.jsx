@@ -19,6 +19,7 @@ import Header from "./components/Header.jsx";
 import StandingsTable from "./components/StandingsTable.jsx";
 import MatchForm from "./components/MatchForm.jsx";
 import MatchResult from "./components/MatchResult.jsx";
+import PendingMatches from "./components/PendingMatches.jsx";
 import MatchHistory from "./components/MatchHistory.jsx";
 import TeamList from "./components/TeamList.jsx";
 import TeamModal from "./components/TeamModal.jsx";
@@ -74,6 +75,11 @@ function App() {
     setMatchForm(EMPTY_FORM);
   };
 
+  const handlePickFixture = (fixture) => {
+    setMatchForm({ ...EMPTY_FORM, homeId: fixture.homeId, awayId: fixture.awayId });
+    document.getElementById("home-goals").focus();
+  };
+
   const handleDeleteMatch = (matchId) => {
     setMatches((currentMatches) => currentMatches.filter((match) => match.id !== matchId));
   };
@@ -122,24 +128,34 @@ function App() {
             </p>
           </div>
 
-          <MatchForm
-            teams={teams}
-            fixtures={fixtures}
-            matches={matches}
-            values={matchForm}
-            onChange={handleFormChange}
-            onRegister={handleRegisterMatch}
-          />
+          <div className="register">
+            <div className="register__main">
+              <MatchForm
+                teams={teams}
+                fixtures={fixtures}
+                matches={matches}
+                values={matchForm}
+                onChange={handleFormChange}
+                onRegister={handleRegisterMatch}
+              />
 
-          {lastMatch && (
-            <MatchResult
-              key={lastMatch.id}
-              match={lastMatch}
-              homeTeam={teamsById[lastMatch.homeId]}
-              awayTeam={teamsById[lastMatch.awayId]}
-              fixture={lastFixture}
+              {lastMatch && (
+                <MatchResult
+                  key={lastMatch.id}
+                  match={lastMatch}
+                  homeTeam={teamsById[lastMatch.homeId]}
+                  awayTeam={teamsById[lastMatch.awayId]}
+                  fixture={lastFixture}
+                />
+              )}
+            </div>
+
+            <PendingMatches
+              pendingFixtures={pendingFixtures}
+              teamsById={teamsById}
+              onPick={handlePickFixture}
             />
-          )}
+          </div>
         </section>
 
         <MatchHistory
