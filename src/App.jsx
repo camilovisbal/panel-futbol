@@ -12,6 +12,7 @@ import {
 import Header from "./components/Header.jsx";
 import StandingsTable from "./components/StandingsTable.jsx";
 import MatchForm from "./components/MatchForm.jsx";
+import MatchResult from "./components/MatchResult.jsx";
 import TeamList from "./components/TeamList.jsx";
 import TeamModal from "./components/TeamModal.jsx";
 import "./App.css";
@@ -25,6 +26,7 @@ function App() {
   const [matches, setMatches] = useState(initialMatches);
   const [matchForm, setMatchForm] = useState(EMPTY_FORM);
   const [selectedTeamId, setSelectedTeamId] = useState(null);
+  const [lastMatchId, setLastMatchId] = useState(null);
 
   const pendingFixtures = getPendingFixtures(fixtures, matches);
   const currentRound = getCurrentRound(pendingFixtures, TOTAL_ROUNDS);
@@ -38,6 +40,9 @@ function App() {
 
   const selectedTeam = teamsById[selectedTeamId];
   const selectedPosition = standings.findIndex((row) => row.teamId === selectedTeamId) + 1;
+
+  const lastMatch = matches.find((match) => match.id === lastMatchId);
+  const lastFixture = lastMatch && fixtures.find((fixture) => fixture.id === lastMatch.fixtureId);
 
   const handleFormChange = (field, value) => {
     setMatchForm((currentForm) => ({ ...currentForm, [field]: value }));
@@ -54,6 +59,7 @@ function App() {
     };
 
     setMatches((currentMatches) => [...currentMatches, newMatch]);
+    setLastMatchId(newMatch.id);
     setMatchForm(EMPTY_FORM);
   };
 
@@ -98,6 +104,16 @@ function App() {
             onChange={handleFormChange}
             onRegister={handleRegisterMatch}
           />
+
+          {lastMatch && (
+            <MatchResult
+              key={lastMatch.id}
+              match={lastMatch}
+              homeTeam={teamsById[lastMatch.homeId]}
+              awayTeam={teamsById[lastMatch.awayId]}
+              fixture={lastFixture}
+            />
+          )}
         </section>
 
         <TeamList teams={teams} standings={standings} onSelectTeam={setSelectedTeamId} />
