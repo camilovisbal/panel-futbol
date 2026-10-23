@@ -15,6 +15,8 @@ function SeedLine({ seed, team, isHome }) {
 }
 
 function SemifinalBracket({ pairs, teamsById, dates, isDecided, roundsLeft }) {
+    const hostTeams = pairs.flatMap((pair) => [teamsById[pair.higher.teamId], teamsById[pair.lower.teamId]]);
+
     return (
         <section className="section semifinal" id="semifinal" aria-labelledby="semifinal-titulo">
             <div className="section__head">
@@ -52,6 +54,33 @@ function SemifinalBracket({ pairs, teamsById, dates, isDecided, roundsLeft }) {
                     );
                 })}
             </div>
+
+            <div className="semifinal__band" aria-label="Estadios de los cuatro semifinalistas">
+                {hostTeams.map((team) => (
+                    <figure key={team.id} className="semifinal__panel">
+                        <img
+                            src={team.stadiumPhoto.src}
+                            alt={`Estadio ${team.stadium} de ${team.name}`}
+                            width="1280"
+                            height="853"
+                            loading="lazy"
+                        />
+                        <figcaption>{team.stadium}</figcaption>
+                    </figure>
+                ))}
+            </div>
+            <p className="semifinal__credits">
+                Fotos de Wikimedia Commons:{" "}
+                {hostTeams.map((team, index) => (
+                    <span key={team.id}>
+                        {team.stadiumPhoto.author} (
+                        <a href={team.stadiumPhoto.source} target="_blank" rel="noreferrer">
+                            {team.stadiumPhoto.license}
+                        </a>
+                        ){index < hostTeams.length - 1 ? ", " : "."}
+                    </span>
+                ))}
+            </p>
         </section>
     );
 }
