@@ -76,23 +76,25 @@ function MatchHistory({
                             : `${matches.length} partidos registrados`}
                     </p>
 
-                    {rounds.map((round) => (
-                        <div key={round} className="history__round">
-                            <h3 className="history__round-title">Jornada {round}</h3>
-                            <ul className="history__list">
-                                {matchesByRound[round].map((match) => (
-                                    <MatchRow
-                                        key={match.id}
-                                        match={match}
-                                        fixture={fixturesById[match.fixtureId]}
-                                        homeTeam={teamsById[match.homeId]}
-                                        awayTeam={teamsById[match.awayId]}
-                                        onDelete={onDelete}
-                                    />
-                                ))}
-                            </ul>
-                        </div>
-                    ))}
+                    <div className="history__rounds">
+                        {rounds.map((round) => (
+                            <div key={round} className="history__round">
+                                <h3 className="history__round-title">Jornada {round}</h3>
+                                <ul className="history__list">
+                                    {matchesByRound[round].map((match) => (
+                                        <MatchRow
+                                            key={match.id}
+                                            match={match}
+                                            fixture={fixturesById[match.fixtureId]}
+                                            homeTeam={teamsById[match.homeId]}
+                                            awayTeam={teamsById[match.awayId]}
+                                            onDelete={onDelete}
+                                        />
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
+                    </div>
                 </>
             )}
 
