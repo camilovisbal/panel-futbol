@@ -1,0 +1,175 @@
+.standings__scroll {
+    overflow-x: auto;
+    margin: 0 calc(var(--margin) * -1);
+    padding: 0 var(--margin);
+}
+
+.standings__table {
+    width: 100%;
+    min-width: 760px;
+    border-collapse: collapse;
+    font-size: clamp(1rem, 0.9rem + 0.4vw, 1.25rem);
+}
+
+.standings__table thead th {
+    padding: 0 10px 14px;
+    color: var(--muted);
+    font-size: var(--step-small);
+    font-weight: 600;
+    text-align: right;
+}
+
+.standings__table abbr {
+    text-decoration: none;
+}
+
+.standings__table td {
+    padding: 0 10px;
+    text-align: right;
+}
+
+.standings__row {
+    height: 60px;
+    border-top: 1px solid #2f2f2f;
+    transition: background-color 160ms var(--ease-out);
+}
+
+.standings__row:hover {
+    background: var(--surface);
+}
+
+.standings__row--cut {
+    border-bottom: 2px solid var(--accent);
+}
+
+.standings__table .standings__pos {
+    position: relative;
+    width: 48px;
+    padding-left: 14px;
+    text-align: left;
+}
+
+.standings__row--zone .standings__pos::before {
+    content: "";
+    position: absolute;
+    top: 14px;
+    bottom: 14px;
+    left: 0;
+    width: 4px;
+    background: var(--accent);
+}
+
+.standings__table .standings__team {
+    text-align: left;
+}
+
+.standings__team button {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    padding: 6px 0;
+    border: 0;
+    background: none;
+    font-weight: 600;
+    text-align: left;
+}
+
+.standings__team button:hover .standings__name {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.standings__short {
+    display: none;
+}
+
+.standings__status {
+    padding: 2px 8px;
+    font-size: var(--step-small);
+    font-weight: 600;
+}
+
+.standings__status--clasificado {
+    background: var(--accent);
+    color: var(--accent-ink);
+}
+
+.standings__status--eliminado {
+    background: var(--surface-2);
+    color: var(--muted);
+}
+
+.standings__table .standings__points {
+    font-weight: 800;
+}
+
+.standings__table .standings__form {
+    width: 170px;
+    padding-right: 0;
+}
+
+.form {
+    display: inline-flex;
+    gap: 4px;
+}
+
+.form__item {
+    display: inline-grid;
+    width: 26px;
+    height: 26px;
+    place-items: center;
+    font-size: var(--step-small);
+    font-weight: 800;
+}
+
+.form__item--G {
+    background: var(--accent);
+    color: var(--accent-ink);
+}
+
+.form__item--E {
+    background: var(--surface-2);
+    color: var(--ink);
+}
+
+.form__item--P {
+    background: var(--danger);
+    color: var(--accent-ink);
+}
+
+.standings__legend {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    color: var(--muted);
+    font-size: var(--step-small);
+}
+
+.standings__swatch {
+    width: 14px;
+    height: 14px;
+    background: var(--accent);
+}
+
+@media (max-width: 640px) {
+    .standings__table {
+        min-width: 640px;
+    }
+
+    .standings__name {
+        display: none;
+    }
+
+    .standings__short {
+        display: inline;
+    }
+
+    .standings__table .standings__team {
+        position: sticky;
+        left: 0;
+        z-index: 1;
+        background: var(--bg);
+    }
+}
