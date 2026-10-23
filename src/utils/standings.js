@@ -80,6 +80,14 @@ export function getRecentForm(teamId, matches, fixtures, size = 5) {
         });
 }
 
+// Cruces de semifinal con la tabla actual: primero contra cuarto y segundo contra tercero.
+export function getSemifinalPairs(standings) {
+    return [
+        { id: "semi-1", higher: { ...standings[0], position: 1 }, lower: { ...standings[3], position: 4 } },
+        { id: "semi-2", higher: { ...standings[1], position: 2 }, lower: { ...standings[2], position: 3 } },
+    ];
+}
+
 // Un equipo está clasificado cuando menos de cuatro rivales pueden alcanzar sus puntos,
 // y eliminado cuando ya hay cuatro equipos con más puntos de los que él puede sumar.
 export function getQualificationStatus(standings, matchesPerTeam) {

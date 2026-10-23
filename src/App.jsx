@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { teams } from "./data/teams.js";
-import { fixtures, TOTAL_ROUNDS } from "./data/fixtures.js";
+import { fixtures, SEMIFINAL_DATES, TOTAL_ROUNDS } from "./data/fixtures.js";
 import { initialMatches } from "./data/matches.js";
 import {
   ALL_TEAMS,
@@ -13,10 +13,12 @@ import {
   calculateStandings,
   getQualificationStatus,
   getRecentForm,
+  getSemifinalPairs,
   SEMIFINAL_SPOTS,
 } from "./utils/standings.js";
 import Header from "./components/Header.jsx";
 import StandingsTable from "./components/StandingsTable.jsx";
+import SemifinalBracket from "./components/SemifinalBracket.jsx";
 import MatchForm from "./components/MatchForm.jsx";
 import MatchResult from "./components/MatchResult.jsx";
 import PendingMatches from "./components/PendingMatches.jsx";
@@ -44,6 +46,7 @@ function App() {
 
   const standings = calculateStandings(teams, matches);
   const statusById = getQualificationStatus(standings, MATCHES_PER_TEAM);
+  const semifinalPairs = getSemifinalPairs(standings);
   const formById = Object.fromEntries(
     teams.map((team) => [team.id, getRecentForm(team.id, matches, fixtures)])
   );
@@ -119,6 +122,14 @@ function App() {
             onSelectTeam={setSelectedTeamId}
           />
         </section>
+
+        <SemifinalBracket
+          pairs={semifinalPairs}
+          teamsById={teamsById}
+          dates={SEMIFINAL_DATES}
+          isDecided={pendingFixtures.length === 0}
+          roundsLeft={roundsLeft}
+        />
 
         <section className="section" id="registrar" aria-labelledby="registrar-titulo">
           <div className="section__head">

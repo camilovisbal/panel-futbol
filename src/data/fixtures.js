@@ -1,6 +1,12 @@
 // Calendario completo del torneo: 18 jornadas, todos contra todos a ida y vuelta.
 export const TOTAL_ROUNDS = 18;
 
+// Semifinal a ida y vuelta: el mejor ubicado de cada cruce es local en la vuelta.
+export const SEMIFINAL_DATES = {
+    firstLeg: "2026-12-12",
+    secondLeg: "2026-12-19",
+};
+
 export const fixtures = [
     { id: 1, round: 1, date: "2026-08-08", homeId: "barcelona", awayId: "man-city" },
     { id: 2, round: 1, date: "2026-08-08", homeId: "dortmund", awayId: "inter" },
