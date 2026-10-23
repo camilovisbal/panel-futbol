@@ -9,7 +9,7 @@ function TeamCard({ team, position, points, onSelect }) {
                 <span className="team-card__name">{team.name}</span>
                 <span className="team-card__meta">{team.city} · {team.country}</span>
                 {position > 0 && (
-                    <span className="team-card__rank tabular">
+                    <span className="team-card__rank">
                         {position}.º con {points} {points === 1 ? "punto" : "puntos"}
                     </span>
                 )}

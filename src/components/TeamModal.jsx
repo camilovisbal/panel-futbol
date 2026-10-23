@@ -77,7 +77,7 @@ function TeamModal({ team, standing, position, onClose }) {
                         {standing && (
                             <div>
                                 <dt>En la tabla</dt>
-                                <dd className="tabular">
+                                <dd>
                                     {position}.º · {standing.points} pts · {standing.played} PJ
                                 </dd>
                             </div>

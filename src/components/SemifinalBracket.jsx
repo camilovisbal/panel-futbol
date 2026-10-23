@@ -7,7 +7,7 @@ function SeedLine({ seed, team, isHome }) {
         <p className="semifinal__seed">
             <TeamCrest team={team} size="medium" />
             <span className="semifinal__seed-name">{team.name}</span>
-            <span className="semifinal__seed-meta tabular">
+            <span className="semifinal__seed-meta">
                 {seed.position}.º · {seed.points} pts{isHome ? " · local" : ""}
             </span>
         </p>
