@@ -1,7 +1,6 @@
 .crest {
-    display: inline-grid;
+    display: inline-block;
     flex-shrink: 0;
-    place-items: center;
 }
 
 .crest img {
