@@ -1,7 +1,7 @@
 .header {
     display: grid;
     grid-template-rows: auto 1fr auto;
-    min-height: 86svh;
+    min-height: 72svh;
     padding: 20px var(--margin) 28px;
 }
 
@@ -11,6 +11,8 @@
     align-items: baseline;
     justify-content: space-between;
     gap: 8px 24px;
+    position: relative;
+    z-index: 1;
     font-weight: 600;
 }
 
@@ -37,12 +39,14 @@
 
 .header__name {
     align-self: end;
-    margin: 0 -0.04em 0.16em;
-    font-size: calc((100vw - 2 * var(--margin)) / 3.95);
+    margin: 0.4em -0.03em 0.1em;
+    font-size: calc((100vw - 2 * var(--margin)) / 6.2);
     font-weight: 800;
-    line-height: 0.82;
+    line-height: 0.9;
     letter-spacing: -0.06em;
     white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
     animation: reveal 900ms var(--ease-out) both;
 }
 
@@ -77,7 +81,7 @@
 
 @media (max-width: 640px) {
     .header {
-        min-height: 78svh;
+        min-height: 64svh;
     }
 
     .header__links {

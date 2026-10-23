@@ -2,7 +2,7 @@ import "./Header.css";
 
 function Header({ currentRound, totalRounds }) {
     return (
-        <header className="header">
+        <header className="header" id="inicio">
             <nav className="header__nav" aria-label="Secciones">
                 <a className="header__brand" href="#inicio">Liga Élite 26/27</a>
                 <ul className="header__links">
@@ -13,7 +13,7 @@ function Header({ currentRound, totalRounds }) {
                 </ul>
             </nav>
 
-            <h1 className="header__name" id="inicio">Liga Élite</h1>
+            <h1 className="header__name">Liga Élite</h1>
 
             <div className="header__foot">
                 <p className="header__lead">

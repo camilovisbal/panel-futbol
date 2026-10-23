@@ -49,6 +49,8 @@
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 12px;
+    position: relative;
+    z-index: 1;
     margin-top: clamp(56px, 7vw, 96px);
     font-size: var(--step-small);
     font-weight: 600;
@@ -56,11 +58,13 @@
 
 .footer__name {
     margin: 24px -0.04em calc(-0.2em);
-    font-size: calc((100vw - 2 * var(--margin)) / 3.95);
+    font-size: calc((100vw - 2 * var(--margin)) / 6.2);
     font-weight: 800;
-    line-height: 0.82;
+    line-height: 0.9;
     letter-spacing: -0.06em;
     white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
 }
 
 @media (max-width: 900px) {
