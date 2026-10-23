@@ -16,10 +16,6 @@
     font-weight: 600;
 }
 
-.header__brand {
-    text-decoration: none;
-}
-
 .header__links {
     display: flex;
     gap: clamp(14px, 2.4vw, 32px);

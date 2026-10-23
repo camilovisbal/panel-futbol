@@ -4,7 +4,7 @@ function Header({ currentRound, totalRounds }) {
     return (
         <header className="header" id="inicio">
             <nav className="header__nav" aria-label="Secciones">
-                <a className="header__brand" href="#inicio">Liga Élite 26/27</a>
+                <p className="header__brand">Liga Élite 26/27</p>
                 <ul className="header__links">
                     <li><a href="#tabla">Tabla</a></li>
                     <li><a href="#registrar">Registrar</a></li>
